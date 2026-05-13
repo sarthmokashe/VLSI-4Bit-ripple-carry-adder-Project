@@ -56,10 +56,10 @@ Cout = AB + ACin + BCin
 
 # Files Included
 
-| File Name | Description |
-|------------|-------------|
-| design.sv | Main design code for Full Adder and 4-Bit Ripple Carry Adder |
-| testbench.sv | Testbench used for simulation and verification |
+| File Name    | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
+| design.sv    | Main design code for Full Adder and 4-Bit Ripple Carry Adder |
+| testbench.sv | Testbench used for simulation and verification               |
 
 ---
 
@@ -97,12 +97,12 @@ Simulation performed using:
 
 # Test Cases
 
-| A | B | Cin | Sum | Cout |
-|---|---|---|---|---|
-| 0001 | 0010 | 0 | 0011 | 0 |
-| 0101 | 0011 | 0 | 1000 | 0 |
-| 1111 | 0001 | 0 | 0000 | 1 |
-| 1010 | 0101 | 1 | 0000 | 1 |
+| A    | B    | Cin | Sum  | Cout |
+| ---- | ---- | --- | ---- | ---- |
+| 0001 | 0010 | 0   | 0011 | 0    |
+| 0101 | 0011 | 0   | 1000 | 0    |
+| 1111 | 0001 | 0   | 0000 | 1    |
+| 1010 | 0101 | 1   | 0000 | 1    |
 
 ---
 
