@@ -1,61 +1,64 @@
 `timescale 1ns/1ps
 
-module full_adder(
-    input a,
-    input b,
-    input cin,
-    output sum,
-    output cout
+module tb_ripple_carry_adder;
+
+// Inputs
+reg [3:0] A;
+reg [3:0] B;
+reg Cin;
+
+// Outputs
+wire [3:0] Sum;
+wire Cout;
+
+
+// Instantiate the Design Under Test (DUT)
+ripple_carry_adder uut(
+    .A(A),
+    .B(B),
+    .Cin(Cin),
+    .Sum(Sum),
+    .Cout(Cout)
 );
 
-assign sum = a ^ b ^ cin;
 
-assign cout = (a & b) | (a & cin) | (b & cin);
+initial begin
 
-endmodule
+    // Create waveform file
+    $dumpfile("dump.vcd");
+    $dumpvars(0, tb_ripple_carry_adder);
 
+    // Display outputs
+    $monitor("A=%b B=%b Cin=%b Sum=%b Cout=%b",
+              A, B, Cin, Sum, Cout);
 
+    // Test Case 1
+    A = 4'b0001;
+    B = 4'b0010;
+    Cin = 0;
+    #10;
 
-module ripple_carry_adder(
-    input [3:0] A,
-    input [3:0] B,
-    input Cin,
-    output [3:0] Sum,
-    output Cout
-);
+    // Test Case 2
+    A = 4'b0101;
+    B = 4'b0011;
+    Cin = 0;
+    #10;
 
-wire c1, c2, c3;
+    // Test Case 3
+    A = 4'b1111;
+    B = 4'b0001;
+    Cin = 0;
+    #10;
 
-full_adder FA0(
-    .a(A[0]),
-    .b(B[0]),
-    .cin(Cin),
-    .sum(Sum[0]),
-    .cout(c1)
-);
+    // Test Case 4
+    A = 4'b1010;
+    B = 4'b0101;
+    Cin = 1;
+    #10;
 
-full_adder FA1(
-    .a(A[1]),
-    .b(B[1]),
-    .cin(c1),
-    .sum(Sum[1]),
-    .cout(c2)
-);
+    // Stop simulation
+    $finish;
 
-full_adder FA2(
-    .a(A[2]),
-    .b(B[2]),
-    .cin(c2),
-    .sum(Sum[2]),
-    .cout(c3)
-);
-
-full_adder FA3(
-    .a(A[3]),
-    .b(B[3]),
-    .cin(c3),
-    .sum(Sum[3]),
-    .cout(Cout)
-);
+end
 
 endmodule
